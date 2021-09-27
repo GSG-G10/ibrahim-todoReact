@@ -1,7 +1,7 @@
 import {  Typography  } from 'antd';
-import {  SmileOutlined, SmileFilled, DeleteTwoTone , RadiusBottomrightOutlined} from '@ant-design/icons';
+import {  SmileOutlined, SmileFilled, DeleteTwoTone , RadiusBottomrightOutlined,} from '@ant-design/icons';
 
-function Card({taskT, i, editTask, removeTask}) {
+function Card({taskT, i, editTask, showModal,setIdRemove}) {
     const { Paragraph } = Typography;
     return (
         <div className="task" key={i}>
@@ -13,7 +13,10 @@ function Card({taskT, i, editTask, removeTask}) {
             >
                 <span className='text_task'>{taskT.text}</span>
             </Paragraph>
-            <DeleteTwoTone className="removeTask"  onClick={()=> removeTask(taskT.id)} type="primary" />
+            <DeleteTwoTone className="removeTask"  onClick={ ()=>{
+                showModal()
+                 {setIdRemove(taskT.id)} 
+            } } type="primary" > </DeleteTwoTone>
 
         </div>
     )

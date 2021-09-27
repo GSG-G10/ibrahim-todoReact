@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Typography, Input ,notification, Divider, Space } from 'antd';
+import { Button, Typography, Input ,notification, Modal, AutoComplete  } from 'antd';
 
 
 import Card from './Card';
 
 function ToDO() {
+    const [visible, setVisible] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [modalText, setModalText] = useState('Do you want delete this task from list?');
+  
+    
+
     const [entary, setEntary] = useState('')
+    const [idRemove, setIdRemove] = useState(0)
     const [ line, setLine ] = useState([
-        {id:1, text: 'this my first task'},
-        {id:2, text: 'this my second task'},
-        {id:3, text: 'this my third task '},
+        {id:1, text: 'this my first task 1111'},
+        {id:2, text: 'this my second task 222'},
+        {id:3, text: 'this my third task 33333333'},
+        {id:4, text: 'this my third task 444'},
+        {id:5, text: 'this my third task 555555'},
     ])
     const listenEntary  = e =>{
         setEntary(e.target.value)
@@ -19,9 +28,14 @@ function ToDO() {
         notifiAdded()
         setEntary(null)
     }
-    const removeTask = value=>{
-        setLine(line.filter(item => item.id !== Number(value)));
+    const removeTask = ()=>{
+        setLine(line.filter(item => item.id !== idRemove));
+        setConfirmLoading(true);
+        setTimeout(() => {
+          setVisible(false);
+          setConfirmLoading(false);
         notifiDelete()
+    }, 1000);
     }
     const editTask = (e, i) =>{
         setLine(
@@ -37,16 +51,24 @@ function ToDO() {
           message: 'Remove Task',
           description: 'Delete Task Done.',
         });
-      };
+    };
 
-      const notifiAdded = () => {
-        notification.info({
-          message: 'Add Task',
-          description:  entary,
-        });
-      };
-      
+    const notifiAdded = () => {
+    notification.info({
+        message: 'Add Task',
+        description:  entary,
+    });
+    };
 
+        
+    const showModal = () => {
+        setVisible(true);
+      };
+    
+      const handleCancel = () => {
+        console.log('Clicked cancel button');
+        setVisible(false);
+      };
 
     return (
         <div className='todo'>
@@ -60,11 +82,17 @@ function ToDO() {
             </div>
             <div className="wrapper_tasks">
                 {line.map((taskT, i) => {
-                    return <Card taskT={taskT} i={i} editTask={editTask} removeTask={removeTask} />
+                    return <Card taskT={taskT} i={i} editTask={editTask} removeTask={removeTask} setIdRemove={setIdRemove} showModal={showModal}/>
                 })}
             </div>
-
-
+            <Modal
+                title="Note"
+                visible={visible}
+                onOk={removeTask}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}>
+                <p>{modalText}</p>
+            </Modal>
 
 
         </div>
