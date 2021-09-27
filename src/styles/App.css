@@ -1,0 +1,119 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+
+
+body{
+
+  overflow: hidden;
+}
+
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+
+
+
+.Layout{
+  height: 100vh;
+}
+
+
+.content{
+  /* background-color: brown;
+  
+  
+  */
+}
+
+.Menu_all{
+
+}
+
+
+.add_task{
+  display: flex;
+}
+
+.wrapper_tasks{
+  margin-top: 20px;
+}
+.task{
+  display: flex;
+  position: relative;
+  margin-top: 5px;
+  background-color: rgb(231, 231, 231);
+padding: 15px 5px;
+height: auto;
+}
+
+.task:hover{
+  background-color: rgb(219, 219, 219);
+}
+
+
+.input_edit {
+width: calc(100% - 60px ) ;
+background-color: blue;
+margin: 0 10px;
+}
+
+
+.text_task{ 
+  width: 80%;
+  line-height: 30px;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+color: rgb(0, 0, 0);
+font-size: 20px;
+font-weight: 500;
+display: flex;
+}
+
+.btn_added{
+  width: 200px;
+  border: none;
+  outline: none;
+}
+
+.btn_added button{
+  width: 100%;
+}
+
+.removeTask{
+font-size: 22px;
+position: absolute;
+right: 30px;
+top: 50%;
+transform: translateY(-50%);
+}
+.ant-typography-edit{
+position: absolute;
+right: 60px;
+font-size: 22px;
+top: 50%;
+transform: translateY(-50%);
+}
+.ant-typography-copy{
+  position: absolute;
+  right: 90px;
+font-size: 22px;
+top: 50%;
+  transform: translateY(-50%);
+}
